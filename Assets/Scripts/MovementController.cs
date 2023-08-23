@@ -46,7 +46,7 @@ public class MovementController : MonoBehaviour
 
         theRB.velocity = new Vector2 (targetSpeed, theRB.velocity.y);
 
-        isTouchingWall = Physics2D.OverlapBox(wallCheckPoint.position, new Vector2(0.06f, 0.08f), 0f, whatIsWall);
+        isTouchingWall = Physics2D.OverlapBox(wallCheckPoint.position, new Vector2(0.03f, 0.3f), 0f, whatIsWall);
 
         if (isTouchingWall)
         {
