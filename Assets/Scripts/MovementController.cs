@@ -25,6 +25,9 @@ public class MovementController : MonoBehaviour
 
     private Vector2 relativeTransform;
 
+    public bool isOnPlatform;
+    public Rigidbody2D platformRB;
+
     private void Awake()
     {
         theRB = GetComponent<Rigidbody2D>();
@@ -44,7 +47,15 @@ public class MovementController : MonoBehaviour
 
         float targetSpeed = speed * speedMultiplier * relativeTransform.x;
 
-        theRB.velocity = new Vector2 (targetSpeed, theRB.velocity.y);
+        if(isOnPlatform)
+        {
+            theRB.velocity = new Vector2(targetSpeed + platformRB.velocity.x, theRB.velocity.y);
+        }
+        else
+        {
+            theRB.velocity = new Vector2(targetSpeed, theRB.velocity.y);
+        }
+
 
         isTouchingWall = Physics2D.OverlapBox(wallCheckPoint.position, new Vector2(0.03f, 0.3f), 0f, whatIsWall);
 
