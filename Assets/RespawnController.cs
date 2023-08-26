@@ -13,6 +13,8 @@ public class RespawnController : MonoBehaviour
 
     private Rigidbody2D playerRB;
 
+    public  ParticleController particleController;
+
     [SerializeField] private float waitToRespawn;
 
     private void Awake()
@@ -44,6 +46,8 @@ public class RespawnController : MonoBehaviour
 
     private void KillPlayer()
     {
+        // Play Death Particles
+        particleController.PlayDeathParticle(transform.position);
 
         StartCoroutine(Respawn(waitToRespawn));
     }

@@ -30,6 +30,10 @@ public class MovementController : MonoBehaviour
 
     public ParticleController particleController;
 
+    public Transform groundCheckPoint;
+    private bool isOnGround;
+    private bool wasOnGround;
+
     private void Awake()
     {
         theRB = GetComponent<Rigidbody2D>();
@@ -65,6 +69,8 @@ public class MovementController : MonoBehaviour
         {
             Flip();
         }
+
+        GroundCheck();
     }
 
     public void Flip()
@@ -72,6 +78,22 @@ public class MovementController : MonoBehaviour
         particleController.PlayTouchParticle(wallCheckPoint.position);
         transform.Rotate(0f, 180f, 0f);
         UpdateRelativeTransform();
+    }
+
+    public void GroundCheck()
+    {
+        //checking if on the ground
+        isOnGround = Physics2D.OverlapBox(groundCheckPoint.position, new Vector2(0.03f, 0.3f), 0f, whatIsWall);
+
+        //Player was JUST in the air but is now back on the ground
+        if (!wasOnGround && isOnGround)
+        {
+            //TRIGGER FALL PARTICLE
+            //Debug.Log("TRIGGER FALL PARTICLE NOW");
+            particleController.PlayFallParticle(groundCheckPoint.position);
+        }
+
+        wasOnGround = isOnGround;
     }
 
     void UpdateRelativeTransform()

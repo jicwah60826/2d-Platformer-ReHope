@@ -23,10 +23,13 @@ public class ParticleController : MonoBehaviour
     [Header("")]
     [SerializeField] ParticleSystem fallParticle;
     [SerializeField] ParticleSystem touchParticle;
+    [SerializeField] ParticleSystem playerDeathParticle;
 
     private void Start()
     {
         touchParticle.transform.parent = null;
+        fallParticle.transform.parent = null;
+        playerDeathParticle.transform.parent = null;
     }
 
     private void Update()
@@ -50,11 +53,24 @@ public class ParticleController : MonoBehaviour
         touchParticle.Play();
     }
 
+    public void PlayFallParticle(Vector2 pos)
+    {
+        fallParticle.transform.position = pos;
+        fallParticle.Play();
+    }
+
+    public void PlayDeathParticle(Vector2 pos)
+    {
+        playerDeathParticle.transform.position = pos;
+        playerDeathParticle.Play();
+    }
+
+
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Ground")){
             isOnGround = true;
-            fallParticle.Play();
         }
     }
 
