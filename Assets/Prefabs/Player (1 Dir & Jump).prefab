@@ -16,7 +16,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1226678714
 Transform:
   m_ObjectHideFlags: 0
@@ -940,6 +940,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   wallCheckPoint: {fileID: 6884512904044614221}
+  isOnPlatform: 0
+  platformRB: {fileID: 0}
 --- !u!114 &6884512903434706672
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1129,7 +1131,7 @@ MonoBehaviour:
   - {x: 0.36132812, y: -0.36132812, z: 0}
   m_ShapePathHash: 0
   m_Mesh: {fileID: 0}
-  m_InstanceId: -12368
+  m_InstanceId: -28090
 --- !u!1 &6884512904044614220
 GameObject:
   m_ObjectHideFlags: 0

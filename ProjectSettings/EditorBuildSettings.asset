@@ -6,7 +6,7 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Moving Platforms.unity
+    path: Assets/Scenes/Plater Dust.unity
     guid: 4173c2ed1f47c8c4f9b9a34abbb6e910
   - enabled: 0
     path: 
