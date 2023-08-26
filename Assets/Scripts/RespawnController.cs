@@ -44,7 +44,7 @@ public class RespawnController : MonoBehaviour
         }
     }
 
-    private void KillPlayer()
+    public void KillPlayer()
     {
         // Play Death Particles
         particleController.PlayDeathParticle(transform.position);
