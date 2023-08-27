@@ -5,8 +5,10 @@ using UnityEngine;
 
 public class MovingPlatform : MonoBehaviour
 {
+
     public float speed;
     Vector3 targetPos;
+    public int startingPoint;
 
 
     MovementController movementController;
@@ -25,19 +27,30 @@ public class MovingPlatform : MonoBehaviour
 
     private void Awake()
     {
+        PlatformSetup();
+    }
+
+    public void PlatformSetup()
+    {
+        transform.position = movePoints[startingPoint].position;
         movementController = GameObject.FindGameObjectWithTag("Player").GetComponent<MovementController>();
         theRB = GetComponent<Rigidbody2D>();
         playerRB = GameObject.FindGameObjectWithTag("Player").GetComponent<Rigidbody2D>();
 
         movePoints = new Transform[ways.transform.childCount];
 
-        for( int i  = 0; i < ways.gameObject.transform.childCount; i++)
+        for (int i = 0; i < ways.gameObject.transform.childCount; i++)
         {
             movePoints[i] = ways.transform.GetChild(i).gameObject.transform;
         }
     }
 
     private void Start()
+    {
+        PlatformStart();
+    }
+
+    public void PlatformStart()
     {
         pointIndex = 1;
         pointCount = movePoints.Length;
@@ -48,7 +61,7 @@ public class MovingPlatform : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Vector2.Distance(transform.position, targetPos) < 0.05f)
+        if (Vector2.Distance(transform.position, targetPos) < 0.05f)
         {
             NextPoint();
         }
@@ -65,7 +78,7 @@ public class MovingPlatform : MonoBehaviour
         transform.position = targetPos;
         moveDirection = Vector3.zero;
 
-        if(pointIndex == pointCount - 1) // arrived at last point
+        if (pointIndex == pointCount - 1) // arrived at last point
         {
             direction = -1;
         }
@@ -82,7 +95,7 @@ public class MovingPlatform : MonoBehaviour
     }
 
     IEnumerator WaitAtNextPoint()
-    
+
     {
         yield return new WaitForSeconds(waitDuration);
         DirectionCalculate();
@@ -99,7 +112,7 @@ public class MovingPlatform : MonoBehaviour
         {
             movementController.isOnPlatform = true;
             movementController.platformRB = theRB;
-            playerRB.gravityScale = playerRB.gravityScale * 50f;
+            //playerRB.gravityScale = playerRB.gravityScale * 50f;
         }
     }
 
@@ -108,7 +121,7 @@ public class MovingPlatform : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             movementController.isOnPlatform = false;
-            playerRB.gravityScale = playerRB.gravityScale  / 50f;
+            //playerRB.gravityScale = playerRB.gravityScale  / 50f;
         }
     }
 }

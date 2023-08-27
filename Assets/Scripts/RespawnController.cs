@@ -17,6 +17,8 @@ public class RespawnController : MonoBehaviour
 
     public MovementController movementController;
 
+    public MovingPlatform movingPlatform;
+
     [SerializeField] private float waitToRespawn;
 
     private void Awake()

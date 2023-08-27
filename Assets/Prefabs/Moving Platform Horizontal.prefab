@@ -42,10 +42,10 @@ GameObject:
   - component: {fileID: 3871655002831453921}
   - component: {fileID: 3871655002831453923}
   - component: {fileID: 3871655002831453920}
+  - component: {fileID: 3871655002831453926}
   - component: {fileID: 3871655002831453922}
   - component: {fileID: 3871655002831453924}
   - component: {fileID: 3871655002831453925}
-  - component: {fileID: 3871655002831453926}
   m_Layer: 0
   m_Name: Platform
   m_TagString: Untagged
@@ -81,11 +81,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 3
+  startingPoint: 0
   ways: {fileID: 3871655002904556000}
   movePoints:
   - {fileID: 3871655002936211977}
   - {fileID: 3871655001816655930}
-  waitDuration: 0.3
+  waitDuration: 0.75
 --- !u!212 &3871655002831453920
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -138,6 +139,27 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!50 &3871655002831453926
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3871655002831453935}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 1
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!61 &3871655002831453922
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -216,28 +238,7 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   m_ShapePathHash: 0
   m_Mesh: {fileID: 0}
-  m_InstanceId: 38352
---- !u!50 &3871655002831453926
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3871655002831453935}
-  m_BodyType: 1
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_Interpolate: 1
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
+  m_InstanceId: -67664
 --- !u!1 &3871655002904556000
 GameObject:
   m_ObjectHideFlags: 0
