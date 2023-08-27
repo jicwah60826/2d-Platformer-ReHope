@@ -44,6 +44,9 @@ public class MovementController : MonoBehaviour
     private void Start()
     {
         UpdateRelativeTransform();
+
+        //reset isTouchingWall
+        isTouchingWall = false;
     }
 
     private void FixedUpdate()
@@ -78,6 +81,7 @@ public class MovementController : MonoBehaviour
         particleController.PlayTouchParticle(wallCheckPoint.position);
         transform.Rotate(0f, 180f, 0f);
         UpdateRelativeTransform();
+        Debug.Log("FLIPPED");
     }
 
     public void GroundCheck()
@@ -88,15 +92,13 @@ public class MovementController : MonoBehaviour
         //Player was JUST in the air but is now back on the ground
         if (!wasOnGround && isOnGround)
         {
-            //TRIGGER FALL PARTICLE
-            //Debug.Log("TRIGGER FALL PARTICLE NOW");
             particleController.PlayFallParticle(groundCheckPoint.position);
         }
 
         wasOnGround = isOnGround;
     }
 
-    void UpdateRelativeTransform()
+    public void UpdateRelativeTransform()
     {
         relativeTransform = transform.InverseTransformVector(Vector2.one);
     }

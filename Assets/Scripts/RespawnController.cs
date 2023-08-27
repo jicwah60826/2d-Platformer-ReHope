@@ -7,10 +7,7 @@ using UnityEngine.InputSystem;
 public class RespawnController : MonoBehaviour
 {
 
-    private Vector2 startPos;
-
-    private Vector3 startRot;
-
+    private Vector2 checkPoint;
 
     private SpriteRenderer spriteRenderer;
 
@@ -37,15 +34,16 @@ public class RespawnController : MonoBehaviour
     void Start()
     {
         //store the players starting position in the startPos Vector2;
-        startPos = transform.position;
+        checkPoint = transform.position;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         // If Player hits obstacle
-        if (other.CompareTag("Obstacle"))
-        {
 
+        if (other.tag == "Obstacle")
+        {
+            Debug.Log("Invoking Kill Player method");
             KillPlayer();
         }
     }
@@ -56,6 +54,11 @@ public class RespawnController : MonoBehaviour
         particleController.PlayDeathParticle(transform.position);
 
         StartCoroutine(Respawn(waitToRespawn));
+    }
+
+    public void UpdateCheckPoint(Vector2 pos)
+    {
+        checkPoint = pos;
     }
 
 IEnumerator Respawn(float duration)
@@ -72,11 +75,7 @@ IEnumerator Respawn(float duration)
         yield return new WaitForSeconds(duration);
         
         //after wait time has passed, reset the player position to the startPos
-        transform.position = startPos;
-
-        ////reset player rotation
-        //Vector3 rotator = new Vector3(transform.rotation.x, 0f, transform.rotation.z);
-        //transform.rotation = Quaternion.Euler(rotator);
+        transform.position = checkPoint;
 
         //re-enable the sprite renderer
         spriteRenderer.enabled = true;
@@ -86,6 +85,14 @@ IEnumerator Respawn(float duration)
         
         // freeze the Z rotation again
         playerRB.constraints = RigidbodyConstraints2D.FreezeRotation;
+
+        //check if player has been rotated. If so, reset to 0;
+        if(movementController.gameObject.transform.rotation.y < 0)
+        {
+            Debug.Log("Player is rotated -180!!!");
+            movementController.transform.Rotate(0f, 180f, 0f); //THIS WORKS
+            movementController.UpdateRelativeTransform();
+        }
     }
 
 }
