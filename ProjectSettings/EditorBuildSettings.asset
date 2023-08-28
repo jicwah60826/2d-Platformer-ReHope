@@ -6,9 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Player Dust.unity
-    guid: 4173c2ed1f47c8c4f9b9a34abbb6e910
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
+    path: Assets/Scenes/Test Scene - Checkpoints.unity
+    guid: ab9481885e5e91d4cb3535707482e6b3
   m_configObjects: {}
