@@ -15,9 +15,7 @@ public class RespawnController : MonoBehaviour
 
     public ParticleController particleController;
 
-    public MovementController movementController;
-
-    public MovingPlatform movingPlatform;
+    private MovementController movementController;
 
     [SerializeField] private float waitToRespawn;
 
@@ -43,7 +41,7 @@ public class RespawnController : MonoBehaviour
     {
         // If Player hits obstacle
 
-        if (other.tag == "Obstacle")
+        if (other.gameObject.tag == "Obstacle")
         {
             Debug.Log("Invoking Kill Player method");
             KillPlayer();
