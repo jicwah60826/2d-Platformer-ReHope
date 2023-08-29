@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1462302819305171287}
   m_Layer: 0
-  m_Name: V Platform Point 2
+  m_Name: Point 1
   m_TagString: Untagged
   m_Icon: {fileID: 7148428337604731935, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -41,7 +41,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1462302820340972388}
   m_Layer: 0
-  m_Name: V Platform Point 1
+  m_Name: Point 0
   m_TagString: Untagged
   m_Icon: {fileID: 7148428337604731935, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -145,12 +145,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 4
+  waitDuration: 0.75
   startingPoint: 1
-  ways: {fileID: 1462302820373147789}
-  movePoints:
+  points:
   - {fileID: 1462302820340972388}
   - {fileID: 1462302819305171287}
-  waitDuration: 0.75
 --- !u!212 &1462302820437344141
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -281,7 +280,7 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   m_ShapePathHash: 0
   m_Mesh: {fileID: 0}
-  m_InstanceId: 41202
+  m_InstanceId: 61870
 --- !u!50 &1462302820437344139
 Rigidbody2D:
   serializedVersion: 4

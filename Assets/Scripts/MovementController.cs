@@ -81,7 +81,7 @@ public class MovementController : MonoBehaviour
         particleController.PlayTouchParticle(wallCheckPoint.position);
         transform.Rotate(0f, 180f, 0f);
         UpdateRelativeTransform();
-        Debug.Log("FLIPPED");
+        //Debug.Log("FLIPPED");
     }
 
     public void GroundCheck()

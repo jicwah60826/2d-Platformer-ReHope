@@ -6,62 +6,62 @@ using UnityEngine;
 public class MovingPlatform : MonoBehaviour
 {
 
-    public float speed;
-    Vector3 targetPos;
-    public int startingPoint;
+    [Range(0f, 10f)]
+    [SerializeField] private float speed;
 
+    [Range(0f, 10f)]
+    public float waitDuration;
+
+    [SerializeField] private int startingPoint;
+
+    Vector3 targetPos;
 
     MovementController movementController;
-    Rigidbody2D theRB;
+    Rigidbody2D rb;
     Vector3 moveDirection;
 
     Rigidbody2D playerRB;
 
     public GameObject ways;
-    public Transform[] movePoints;
-    private int pointIndex;
-    private int pointCount;
-    private int direction = 1;
+    public Transform[] wayPoints;
+    int pointIndex;
+    int pointCount;
+    int direction = 1;
 
-    public float waitDuration;
+
+
 
     private void Awake()
     {
-        PlatformSetup();
-    }
-
-    public void PlatformSetup()
-    {
-        transform.position = movePoints[startingPoint].position;
+        //get the movement controller script that is on the Player game object
         movementController = GameObject.FindGameObjectWithTag("Player").GetComponent<MovementController>();
-        theRB = GetComponent<Rigidbody2D>();
+
+        //get the rigid body 2D that is on the same game object as this script (the platform)
+        rb = GetComponent<Rigidbody2D>();
+
         playerRB = GameObject.FindGameObjectWithTag("Player").GetComponent<Rigidbody2D>();
 
-        movePoints = new Transform[ways.transform.childCount];
+        //automatically add the target points
+        wayPoints = new Transform[ways.transform.childCount];
 
-        for (int i = 0; i < ways.gameObject.transform.childCount; i++)
+        for(int i = 0; i < ways.gameObject.transform.childCount; i++)
         {
-            movePoints[i] = ways.transform.GetChild(i).gameObject.transform;
+            wayPoints[i] = ways.transform.GetChild(i).gameObject.transform;
         }
     }
 
     private void Start()
     {
-        PlatformStart();
-    }
-
-    public void PlatformStart()
-    {
         pointIndex = 1;
-        pointCount = movePoints.Length;
-        targetPos = movePoints[1].transform.position;
+        pointCount = wayPoints.Length;
+        targetPos = wayPoints[1].transform.position;
         DirectionCalculate();
     }
 
-    // Update is called once per frame
-    void Update()
+
+    private void Update()
     {
-        if (Vector2.Distance(transform.position, targetPos) < 0.05f)
+        if(Vector2.Distance(transform.position, targetPos) < 0.05f)
         {
             NextPoint();
         }
@@ -69,33 +69,33 @@ public class MovingPlatform : MonoBehaviour
 
     private void FixedUpdate()
     {
-        theRB.velocity = moveDirection * speed;
+        //move the platform. We use fixed updated because we have a rigid body on the platform
+        rb.velocity = moveDirection * speed;
     }
 
 
-    void NextPoint()
+    private void NextPoint()
     {
         transform.position = targetPos;
         moveDirection = Vector3.zero;
 
-        if (pointIndex == pointCount - 1) // arrived at last point
+        if(pointIndex == pointCount - 1) //arrived at the last point
         {
             direction = -1;
         }
 
-        if (pointIndex == 0) // arrived at first point
+        if(pointIndex == 0) //arrived at the first point
         {
             direction = 1;
         }
 
         pointIndex += direction;
-        targetPos = movePoints[pointIndex].transform.position;
+        targetPos = wayPoints[pointIndex].transform.position;
 
-        StartCoroutine(WaitAtNextPoint());
+        StartCoroutine(WaitNextPoint());
     }
 
-    IEnumerator WaitAtNextPoint()
-
+    IEnumerator WaitNextPoint()
     {
         yield return new WaitForSeconds(waitDuration);
         DirectionCalculate();
@@ -111,8 +111,8 @@ public class MovingPlatform : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             movementController.isOnPlatform = true;
-            movementController.platformRB = theRB;
-            //playerRB.gravityScale = playerRB.gravityScale * 50f;
+            movementController.platformRB = rb;
+            playerRB.gravityScale = playerRB.gravityScale * 10;
         }
     }
 
@@ -121,7 +121,7 @@ public class MovingPlatform : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             movementController.isOnPlatform = false;
-            //playerRB.gravityScale = playerRB.gravityScale  / 50f;
+            playerRB.gravityScale = playerRB.gravityScale / 10;
         }
     }
 }

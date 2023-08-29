@@ -51,18 +51,22 @@ public class ParticleController : MonoBehaviour
     {
         touchParticle.transform.position = pos;
         touchParticle.Play();
+        Debug.Log("PlayTouchParticle");
     }
 
     public void PlayFallParticle(Vector2 pos)
     {
+        
         fallParticle.transform.position = pos;
         fallParticle.Play();
+        Debug.Log("PlayFallParticle");
     }
 
     public void PlayDeathParticle(Vector2 pos)
     {
         playerDeathParticle.transform.position = pos;
         playerDeathParticle.Play();
+        Debug.Log("PlayDeathParticle");
     }
 
 

@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8031430806852038316}
   m_Layer: 0
-  m_Name: H Platform Point 2
+  m_Name: Point 1
   m_TagString: Untagged
   m_Icon: {fileID: 7148428337604731935, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -107,7 +107,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8031430807955340447}
   m_Layer: 0
-  m_Name: H Platform Point 1
+  m_Name: Point 0
   m_TagString: Untagged
   m_Icon: {fileID: 7148428337604731935, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -178,12 +178,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 3
+  waitDuration: 0.75
   startingPoint: 0
-  ways: {fileID: 8031430807922112374}
-  movePoints:
+  points:
   - {fileID: 8031430807955340447}
   - {fileID: 8031430806852038316}
-  waitDuration: 0.75
 --- !u!212 &8031430807984797814
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -335,4 +334,4 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   m_ShapePathHash: 0
   m_Mesh: {fileID: 0}
-  m_InstanceId: 41272
+  m_InstanceId: 61652

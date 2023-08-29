@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Rendering.Universal;
 
 public class RespawnController : MonoBehaviour
 {
@@ -17,7 +18,13 @@ public class RespawnController : MonoBehaviour
 
     private MovementController movementController;
 
+    private ShadowCaster2D shadowCaster;
+
+    private BoxCollider2D boxCollider;
+
     [SerializeField] private float waitToRespawn;
+
+    public bool isKilled;
 
     private void Awake()
     {
@@ -28,6 +35,10 @@ public class RespawnController : MonoBehaviour
         playerRB = GetComponent<Rigidbody2D>();
 
         movementController = GetComponent<MovementController>();
+
+        shadowCaster = GetComponent<ShadowCaster2D>();
+
+        boxCollider = GetComponent<BoxCollider2D>();
     }
 
     // Start is called before the first frame update
@@ -43,15 +54,13 @@ public class RespawnController : MonoBehaviour
 
         if (other.gameObject.tag == "Obstacle")
         {
-            Debug.Log("Invoking Kill Player method");
+            //Debug.Log("Invoking Kill Player method");
             KillPlayer();
         }
     }
 
     public void KillPlayer()
     {
-        // Play Death Particles
-        particleController.PlayDeathParticle(transform.position);
 
         StartCoroutine(Respawn(waitToRespawn));
     }
@@ -63,8 +72,19 @@ public class RespawnController : MonoBehaviour
 
 IEnumerator Respawn(float duration)
     {
+
+        isKilled = true;
+        // Play Death Particles
+        particleController.PlayDeathParticle(transform.position);
+
         //disable the sprite renderer
         spriteRenderer.enabled = false;
+
+        //disable shadow caster
+        shadowCaster.enabled = false;
+
+        //disable box collider
+        boxCollider.enabled = false;
 
         //immediately freeze the position so player stops moving
         playerRB.constraints = RigidbodyConstraints2D.FreezePositionX;
@@ -79,7 +99,13 @@ IEnumerator Respawn(float duration)
 
         //re-enable the sprite renderer
         spriteRenderer.enabled = true;
-        
+
+        //re-enable shadow caster
+        shadowCaster.enabled = true;
+
+        //re-enable box collider
+        boxCollider.enabled = true;
+
         //un freeze all contraints on the rigidbody2D
         playerRB.constraints = RigidbodyConstraints2D.None;
         
@@ -89,7 +115,7 @@ IEnumerator Respawn(float duration)
         //check if player has been rotated. If so, reset to 0;
         if(movementController.gameObject.transform.rotation.y < 0)
         {
-            Debug.Log("Player is rotated -180!!!");
+            //Debug.Log("Player is rotated -180!!!");
             movementController.transform.Rotate(0f, 180f, 0f); //THIS WORKS
             movementController.UpdateRelativeTransform();
         }
