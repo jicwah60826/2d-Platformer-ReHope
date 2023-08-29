@@ -147,7 +147,8 @@ MonoBehaviour:
   speed: 4
   waitDuration: 0.75
   startingPoint: 1
-  points:
+  ways: {fileID: 1462302820373147789}
+  wayPoints:
   - {fileID: 1462302820340972388}
   - {fileID: 1462302819305171287}
 --- !u!212 &1462302820437344141
@@ -280,7 +281,7 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   m_ShapePathHash: 0
   m_Mesh: {fileID: 0}
-  m_InstanceId: 61870
+  m_InstanceId: 38064
 --- !u!50 &1462302820437344139
 Rigidbody2D:
   serializedVersion: 4

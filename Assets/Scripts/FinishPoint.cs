@@ -1,25 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem;
 
 public class FinishPoint : MonoBehaviour
 {
 
+    public Fader fader;
     public int levelToLoad;
 
-    void LoadLevel()
-    {
-        SceneManager.LoadScene(levelToLoad);
-    }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
-            LoadLevel();
+            //disable the colider on the finish point
+            GetComponent<BoxCollider2D>().enabled = false;
+
+            //disable player input
+            other.GetComponent<PlayerInput>().enabled = false;
+
+            fader.SetLevel(levelToLoad);
         }
     }
-
-
 }

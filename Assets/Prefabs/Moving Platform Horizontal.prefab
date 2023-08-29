@@ -180,7 +180,8 @@ MonoBehaviour:
   speed: 3
   waitDuration: 0.75
   startingPoint: 0
-  points:
+  ways: {fileID: 8031430807922112374}
+  wayPoints:
   - {fileID: 8031430807955340447}
   - {fileID: 8031430806852038316}
 --- !u!212 &8031430807984797814
@@ -334,4 +335,4 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   m_ShapePathHash: 0
   m_Mesh: {fileID: 0}
-  m_InstanceId: 61652
+  m_InstanceId: 38168

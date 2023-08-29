@@ -74,6 +74,10 @@ IEnumerator Respawn(float duration)
     {
 
         isKilled = true;
+
+        //De-activate RigidBody 2D
+        playerRB.simulated = false;
+
         // Play Death Particles
         particleController.PlayDeathParticle(transform.position);
 
@@ -119,6 +123,9 @@ IEnumerator Respawn(float duration)
             movementController.transform.Rotate(0f, 180f, 0f); //THIS WORKS
             movementController.UpdateRelativeTransform();
         }
+
+        //Re-enable RigidBody 2D
+        playerRB.simulated = true;
     }
 
 }
