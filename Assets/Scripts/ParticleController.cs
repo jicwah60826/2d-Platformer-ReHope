@@ -29,7 +29,7 @@ public class ParticleController : MonoBehaviour
 
     private void Awake()
     {
-        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+        //audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
     }
 
     private void Start()
@@ -57,6 +57,7 @@ public class ParticleController : MonoBehaviour
     public void PlayTouchParticle(Vector2 pos)
     {
         touchParticle.transform.position = pos;
+        AudioManager.instance.PlaySFX(audioManager.fall);
         audioManager.PlaySFX(audioManager.wallTouch);
         touchParticle.Play();
         //Debug.Log("PlayTouchParticle");

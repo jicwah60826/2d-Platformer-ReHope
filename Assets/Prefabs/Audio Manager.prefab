@@ -41,7 +41,7 @@ AudioSource:
   m_GameObject: {fileID: 4478447408164191807}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 179521857844374584, guid: 6f6d24649450fbc4c9d9e458b34e6fac, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
@@ -169,9 +169,9 @@ AudioSource:
   m_GameObject: {fileID: 4478447408831085387}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 1323111326153370208, guid: 6f6d24649450fbc4c9d9e458b34e6fac, type: 2}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -305,11 +305,11 @@ MonoBehaviour:
   musicSource: {fileID: 4478447408164191776}
   sfxSource: {fileID: 4478447408831085388}
   backgroundMusic: {fileID: 8300000, guid: 7b3e857b24cd0f3499e6551cea00f744, type: 3}
-  death: {fileID: 8300000, guid: 768db0f728f8cf64bbe005958115a340, type: 3}
+  death: {fileID: 8300000, guid: 85c9d1480aa933640a85637013774cbb, type: 3}
   checkPoint: {fileID: 8300000, guid: 2e0ad14e4ed6a1b46b54dd853d40bf6b, type: 3}
-  wallTouch: {fileID: 8300000, guid: 56f1255697e87ef44b8f7008b59a497b, type: 3}
-  portalIn: {fileID: 8300000, guid: 48c23d86626c50e4caf7590185613439, type: 3}
+  wallTouch: {fileID: 8300000, guid: 3384b31242dac7a41a15cf9f96ab8e8f, type: 3}
+  portalIn: {fileID: 8300000, guid: db34a7bb6cd499c42bff92d1726d7b22, type: 3}
   portalOut: {fileID: 8300000, guid: 7ebe901c73a04fb4c844ca811e4bfcab, type: 3}
   finishPoint: {fileID: 8300000, guid: 883140a4fc859e34a8fe10e3e94b892a, type: 3}
-  effectorZone: {fileID: 8300000, guid: 1a0f9608fbe80e34c8d509c3c035b20f, type: 3}
-  fall: {fileID: 8300000, guid: 115b70c9ae29ec142ad35e1a1004d407, type: 3}
+  effectorZone: {fileID: 8300000, guid: 3d0d1f64ad57253468db2826f6bfd39b, type: 3}
+  fall: {fileID: 8300000, guid: 5d5435427b9a5304fba2286ec25e4b79, type: 3}

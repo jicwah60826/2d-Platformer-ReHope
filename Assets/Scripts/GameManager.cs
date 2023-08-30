@@ -5,12 +5,20 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-
-    private void Update()
+    private static GameManager instance;
+    private void Awake()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (instance == null)
         {
-            Application.Quit();
+            instance = this;
+            DontDestroyOnLoad(gameObject);
         }
+        else
+        {
+            Destroy(gameObject);
+        }
+
+
+        
     }
 }
