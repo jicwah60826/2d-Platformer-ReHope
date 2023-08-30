@@ -14,11 +14,14 @@ public class PortalController : MonoBehaviour
 
     private Rigidbody2D playerRB;
 
+    AudioManager audioManager;
+
     private void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         anim = player.GetComponent<Animation>();
         playerRB = player.GetComponent<Rigidbody2D>();
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -36,6 +39,10 @@ public class PortalController : MonoBehaviour
 
     IEnumerator PortalIn()
     {
+
+        //play portal in
+        audioManager.PlaySFX(audioManager.portalIn);
+
         // disable RB as soon as player touched portal
         playerRB.simulated = false;
 
@@ -53,6 +60,9 @@ public class PortalController : MonoBehaviour
 
         //reset the velocity of the player so that we don't come out of portals with same velocity as we went in
         playerRB.velocity = Vector2.zero;
+
+        //play portal out
+        audioManager.PlaySFX(audioManager.portalOut);
 
         // play the portal out animation
         anim.Play("Portal_OUT");

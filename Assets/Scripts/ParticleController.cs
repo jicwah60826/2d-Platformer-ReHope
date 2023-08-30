@@ -25,6 +25,13 @@ public class ParticleController : MonoBehaviour
     [SerializeField] ParticleSystem touchParticle;
     [SerializeField] ParticleSystem playerDeathParticle;
 
+    AudioManager audioManager;
+
+    private void Awake()
+    {
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+    }
+
     private void Start()
     {
         touchParticle.transform.parent = null;
@@ -50,23 +57,26 @@ public class ParticleController : MonoBehaviour
     public void PlayTouchParticle(Vector2 pos)
     {
         touchParticle.transform.position = pos;
+        audioManager.PlaySFX(audioManager.wallTouch);
         touchParticle.Play();
-        Debug.Log("PlayTouchParticle");
+        //Debug.Log("PlayTouchParticle");
     }
 
     public void PlayFallParticle(Vector2 pos)
     {
         
         fallParticle.transform.position = pos;
+        audioManager.PlaySFX(audioManager.fall);
         fallParticle.Play();
-        Debug.Log("PlayFallParticle");
+        //Debug.Log("PlayFallParticle");
     }
 
     public void PlayDeathParticle(Vector2 pos)
     {
         playerDeathParticle.transform.position = pos;
+        audioManager.PlaySFX(audioManager.death);
         playerDeathParticle.Play();
-        Debug.Log("PlayDeathParticle");
+        //Debug.Log("PlayDeathParticle");
     }
 
 
