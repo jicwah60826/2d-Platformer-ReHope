@@ -34,8 +34,8 @@ public class CheckPoint : MonoBehaviour
         {
             respawnController.UpdateCheckPoint(respawnPoint.position);
 
-            //play checkpoint SFX
-            audioManager.PlaySFX(audioManager.checkPoint);
+            //play checkpoint SFX here
+            AudioManager.instance.PlaySFX(2);
 
             //change the spriter to the active sprite
             spriteRenderer.sprite = active;

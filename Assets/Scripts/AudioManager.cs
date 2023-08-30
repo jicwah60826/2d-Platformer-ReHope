@@ -4,24 +4,12 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
-
     public static AudioManager instance;
 
+    public AudioSource levelMusic;
+    public AudioSource mainMenuMusic;
 
-    [Header("----- Audio Source -----")]
-    [SerializeField] AudioSource musicSource;
-    [SerializeField] AudioSource sfxSource;
-
-    [Header("----- Audio Clips -----")]
-    public AudioClip backgroundMusic;
-    public AudioClip death;
-    public AudioClip checkPoint;
-    public AudioClip wallTouch;
-    public AudioClip portalIn;
-    public AudioClip portalOut;
-    public AudioClip finishPoint;
-    public AudioClip effectorZone;
-    public AudioClip fall;
+    public AudioSource[] soundEffects;
 
     private void Awake()
     {
@@ -38,15 +26,56 @@ public class AudioManager : MonoBehaviour
     }
 
 
-    private void Start()
+
+    public void PlayMainMenuMusic()
     {
-        musicSource.clip = backgroundMusic;
-        musicSource.Play();
+
+        if (!mainMenuMusic.isPlaying)
+        {
+            mainMenuMusic.Play();
+
+            //Stop other music
+            levelMusic.Stop();
+        }
+
     }
 
-    public void PlaySFX(AudioClip clip)
+    public void PlayLevelMusic()
     {
-        sfxSource.PlayOneShot(clip);
+
+        //Start level music only if it's not already playing
+
+        if (!levelMusic.isPlaying)
+        {
+            levelMusic.Play();
+
+            //Stop other music
+            mainMenuMusic.Stop();
+        }
+
+
     }
 
+    public void StopBGM()
+    {
+        levelMusic.Stop();
+    }
+
+    public void PlaySFX(int sfxNumber)
+    {
+        soundEffects[sfxNumber].Stop(); // stop the sound if it is playing
+        soundEffects[sfxNumber].Play(); // play the sound. allows playing sound in fast repetition
+    }
+
+    public void PlaySFXAdjusted(int sfxNumberToAdjust, float lowPitch, float hiPitch, float volume)
+    {
+        soundEffects[sfxNumberToAdjust].pitch = Random.Range(lowPitch, hiPitch);
+        soundEffects[sfxNumberToAdjust].volume = volume;
+        PlaySFX(sfxNumberToAdjust);
+    }
+
+    public void StopSFX(int sfxNumber)
+    {
+        soundEffects[sfxNumber].Stop();
+    }
 }
