@@ -22,6 +22,11 @@ public class CameraController : MonoBehaviour
         cameraTarget = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
+    private void Start()
+    {
+        AudioManager.instance.PlayLevelMusic();
+    }
+
     private void LateUpdate()
     {
         Vector3 targetPosition = cameraTarget.position + positionOffset;
