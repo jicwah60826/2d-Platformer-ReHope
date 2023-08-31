@@ -52,8 +52,6 @@ public class AudioManager : MonoBehaviour
             //Stop other music
             mainMenuMusic.Stop();
         }
-
-
     }
 
     public void StopBGM()
