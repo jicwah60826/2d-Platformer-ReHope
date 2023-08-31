@@ -20,8 +20,6 @@ public class CheckPoint : MonoBehaviour
     {
         respawnController = GameObject.FindGameObjectWithTag("Player").GetComponent<RespawnController>();
 
-        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
-
         spriteRenderer = GetComponent<SpriteRenderer>();
 
         coll = GetComponent<Collider2D>();
