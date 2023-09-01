@@ -6,9 +6,7 @@ using UnityEngine.InputSystem;
 public class FinishPoint : MonoBehaviour
 {
 
-    public Fader fader;
     public int levelToLoad;
-
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -20,7 +18,9 @@ public class FinishPoint : MonoBehaviour
             //disable player input
             other.GetComponent<PlayerInput>().enabled = false;
 
-            fader.SetLevel(levelToLoad);
+            //call the method from the game manager script that does the level loading
+
+            GameManager.GameManagerLoadLevel(levelToLoad);
         }
     }
 }

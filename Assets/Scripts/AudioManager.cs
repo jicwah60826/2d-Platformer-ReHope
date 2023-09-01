@@ -23,6 +23,7 @@ public class AudioManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        PlayLevelMusic();
     }
 
 

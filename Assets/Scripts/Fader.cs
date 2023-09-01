@@ -11,6 +11,10 @@ public class Fader : MonoBehaviour
     {
         // get the Animator component that is attached to this game object
         theAnim = GetComponent<Animator>();
+
+        //this fader will register itself with the fader object in the Game Manager
+        GameManager.RegisterFader(this);
+        //Fader is now registered and game manager can now use it
     }
     public void SetLevel(int level)
     {
