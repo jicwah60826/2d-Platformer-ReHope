@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class AudioManager : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class AudioManager : MonoBehaviour
     public AudioSource mainMenuMusic;
 
     public AudioSource[] soundEffects;
+
+    private string mainMenuScene = "MainMenu";
 
     private void Awake()
     {
@@ -23,7 +26,16 @@ public class AudioManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        PlayLevelMusic();
+
+        if(mainMenuScene == SceneManager.GetActiveScene().name)
+        {
+            PlayMainMenuMusic();
+        }
+        else
+        {
+            PlayLevelMusic();
+        }
+
     }
 
 
@@ -48,10 +60,7 @@ public class AudioManager : MonoBehaviour
 
         if (!levelMusic.isPlaying)
         {
-            levelMusic.Play();
-
-            //Stop other music
-            mainMenuMusic.Stop();
+            StartCoroutine(LevelMusicCo());
         }
     }
 
@@ -76,5 +85,16 @@ public class AudioManager : MonoBehaviour
     public void StopSFX(int sfxNumber)
     {
         soundEffects[sfxNumber].Stop();
+    }
+
+    IEnumerator LevelMusicCo()
+    {
+
+        //Stop other music
+        mainMenuMusic.Stop();
+
+        //wait
+        yield return new WaitForSeconds(0.25f);
+        levelMusic.Play();
     }
 }
