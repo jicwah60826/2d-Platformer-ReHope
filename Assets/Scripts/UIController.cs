@@ -2,21 +2,31 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UIElements;
 using UnityEngine.UI;
-using Microsoft.Unity.VisualStudio.Editor;
+using TMPro;
+using UnityEngine.UIElements;
 
 public class UIController : MonoBehaviour
 {
 
-    public GameObject pauseScreen;
+    public static UIController Instance;
 
+    public GameObject pauseScreen;
     public string mainMenuScene;
+    public TMP_Text deathCount;
+    public TMP_Text gemCount;
+    public GameObject quitOverlay;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
 
     private void Start()
     {
         //default hide pause screen
         pauseScreen.SetActive(false);
+        quitOverlay.SetActive(false);
     }
 
     private void Update()
@@ -49,8 +59,28 @@ public class UIController : MonoBehaviour
         }
     }
 
+    public void QuitConfirm()
+    {
+        quitOverlay.SetActive(true);
+    }
+
     public void QuitGame()
     {
+        // Save game
+        SaveSystem.instance.Save();
+
+        //quit game
         Application.Quit();
     }
+
+    public void QuitCancel()
+    {
+        quitOverlay.SetActive(false);
+    }
+
+    public void UpdateUI()
+    {
+        deathCount.text = "Death Count: " + deathCount;
+    }
+
 }

@@ -24,4 +24,20 @@ public class MainMenu : MonoBehaviour
     {
         Application.Quit();
     }
+
+    public void ContinueGame()
+    {
+        StartCoroutine(ContinueCo());
+    }
+
+    IEnumerator ContinueCo()
+    {
+        // Load from the save system on disk
+        SaveSystem.instance.Load();
+
+        yield return new ();
+
+        //load the current level from the save data
+        SceneManager.LoadScene(SaveSystem.instance.activeSave.currentLevel);
+    }
 }

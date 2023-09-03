@@ -43,6 +43,9 @@ public class PlayerController : MonoBehaviour
         {
             Turn();
         }
+
+        //update UI TEST
+        UIController.Instance.UpdateUI();
     }
 
     void Turn()

@@ -73,6 +73,9 @@ public class RespawnController : MonoBehaviour
 IEnumerator Respawn(float duration)
     {
 
+        //Update Death Count
+        PlayerStats.instance.UpdateDeathCount();
+
         isKilled = true;
 
         //De-activate RigidBody 2D

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4341244626566151936}
   - component: {fileID: 4341244626566151939}
   m_Layer: 0
-  m_Name: Save System Loader
+  m_Name: SaveLoader
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

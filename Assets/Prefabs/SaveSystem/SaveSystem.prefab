@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8179345159463329549}
   - component: {fileID: 8179345159463329548}
   m_Layer: 0
-  m_Name: Save System
+  m_Name: SaveSystem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -46,6 +46,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   activeSave:
     deathCount: 0
-    currentLevel: 
+    currentLevel: 3
     gemCount: 0
   sceneToNotSave: MainMenu
