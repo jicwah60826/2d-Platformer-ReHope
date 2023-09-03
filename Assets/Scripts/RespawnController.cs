@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Rendering.Universal;
@@ -23,8 +24,6 @@ public class RespawnController : MonoBehaviour
     private BoxCollider2D boxCollider;
 
     [SerializeField] private float waitToRespawn;
-
-    public bool isKilled;
 
     private void Awake()
     {
@@ -61,8 +60,8 @@ public class RespawnController : MonoBehaviour
 
     public void KillPlayer()
     {
-
         StartCoroutine(Respawn(waitToRespawn));
+        Debug.Log("Respawn function invoked via KillPlayer method");
     }
 
     public void UpdateCheckPoint(Vector2 pos)
@@ -70,16 +69,21 @@ public class RespawnController : MonoBehaviour
         checkPoint = pos;
     }
 
+    void UpdateSaveSystem()
+    {
+        PlayerStats stats = PlayerStats.instance;
+
+        SaveSystem.instance.activeSave.deathCount = stats.deathCount;
+    }
+
 IEnumerator Respawn(float duration)
     {
 
-        //Update Death Count
-        PlayerStats.instance.UpdateDeathCount();
-
-        isKilled = true;
 
         //De-activate RigidBody 2D
         playerRB.simulated = false;
+
+        Debug.Log("UpdateSaveSystem invoked via Respawn CoRoutine");
 
         // Play Death Particles
         particleController.PlayDeathParticle(transform.position);
@@ -93,11 +97,22 @@ IEnumerator Respawn(float duration)
         //disable box collider
         boxCollider.enabled = false;
 
+
         //immediately freeze the position so player stops moving
         playerRB.constraints = RigidbodyConstraints2D.FreezePositionX;
         
         //stop all velocity for the player
         playerRB.velocity = new Vector2(0,0);
+
+        //Store PlayerStats as reference so we can access the UpdateDeathCount method
+        PlayerStats stats = PlayerStats.instance;
+        stats.UpdateDeathCount();
+
+        //Update the Save System
+        UpdateSaveSystem();
+
+        // Save Data to Disk
+        SaveSystem.instance.Save();
 
         yield return new WaitForSeconds(duration);
         

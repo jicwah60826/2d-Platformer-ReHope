@@ -31,8 +31,5 @@ public class PlayerStats : MonoBehaviour
     public void UpdateDeathCount()
     {
         deathCount++;
-        //update save system
-        // save data to disk
-        SaveSystem.instance.Save();
     }
 }
