@@ -65,11 +65,13 @@ public class AudioManager : MonoBehaviour
     
     public void PlayPointerOver()
     {
+        pointerOver.Stop();
         pointerOver.Play();
     }
     
     public void PlayPointerClick()
     {
+        pointerClick.Stop();
         pointerClick.Play();
     }
 

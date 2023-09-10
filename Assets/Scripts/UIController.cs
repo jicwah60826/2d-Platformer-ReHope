@@ -81,4 +81,14 @@ public class UIController : MonoBehaviour
         //NOT USED YET
     }
 
+    public void PointerOver()
+    {
+        AudioManager.instance.PlayPointerOver();
+    }
+
+    public void PointerClick()
+    {
+        AudioManager.instance.PlayPointerClick();
+    }
+
 }
