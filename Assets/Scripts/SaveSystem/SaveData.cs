@@ -4,8 +4,7 @@ using UnityEngine;
 [System.Serializable]
 public class SaveData
 {
-    public int deathCount;
-    public string currentLevel;
+    public int currentLevel;
     public int gemCount;
 }
 

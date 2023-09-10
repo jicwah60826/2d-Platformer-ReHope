@@ -53,7 +53,6 @@ public class RespawnController : MonoBehaviour
 
         if (other.gameObject.tag == "Obstacle")
         {
-            //Debug.Log("Invoking Kill Player method");
             KillPlayer();
         }
     }
@@ -61,7 +60,6 @@ public class RespawnController : MonoBehaviour
     public void KillPlayer()
     {
         StartCoroutine(Respawn(waitToRespawn));
-        Debug.Log("Respawn function invoked via KillPlayer method");
     }
 
     public void UpdateCheckPoint(Vector2 pos)
@@ -72,8 +70,6 @@ public class RespawnController : MonoBehaviour
     void UpdateSaveSystem()
     {
         PlayerStats stats = PlayerStats.instance;
-
-        SaveSystem.instance.activeSave.deathCount = stats.deathCount;
     }
 
 IEnumerator Respawn(float duration)
@@ -82,8 +78,6 @@ IEnumerator Respawn(float duration)
 
         //De-activate RigidBody 2D
         playerRB.simulated = false;
-
-        Debug.Log("UpdateSaveSystem invoked via Respawn CoRoutine");
 
         // Play Death Particles
         particleController.PlayDeathParticle(transform.position);
@@ -104,9 +98,6 @@ IEnumerator Respawn(float duration)
         //stop all velocity for the player
         playerRB.velocity = new Vector2(0,0);
 
-        //Store PlayerStats as reference so we can access the UpdateDeathCount method
-        PlayerStats stats = PlayerStats.instance;
-        stats.UpdateDeathCount();
 
         //Update the Save System
         UpdateSaveSystem();
@@ -137,7 +128,6 @@ IEnumerator Respawn(float duration)
         //check if player has been rotated. If so, reset to 0;
         if(movementController.gameObject.transform.rotation.y < 0)
         {
-            //Debug.Log("Player is rotated -180!!!");
             movementController.transform.Rotate(0f, 180f, 0f); //THIS WORKS
             movementController.UpdateRelativeTransform();
         }

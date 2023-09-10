@@ -57,8 +57,10 @@ public class SaveSystem : MonoBehaviour
 
     public void DestroySaveSystem()
     {
-        // no save system is assigned as an instance         instance = null;
+        // no save system is assigned as an instance
+        instance = null;
 
-        //destroy the save system game object        Destroy(gameObject);
+        //destroy the save system game object
+        Destroy(gameObject);
     }
 }

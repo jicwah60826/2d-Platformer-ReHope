@@ -8,7 +8,6 @@ public class PlayerStats : MonoBehaviour
     public static PlayerStats instance;
 
     public int gemCount;
-    public int deathCount;
 
     private void Awake()
     {
@@ -20,16 +19,10 @@ public class PlayerStats : MonoBehaviour
         SaveData theSave = SaveSystem.instance.activeSave;
 
         gemCount = theSave.gemCount;
-        deathCount = theSave.deathCount;
     }
 
     public void UpdateGemCount()
     {
         
-    }
-
-    public void UpdateDeathCount()
-    {
-        deathCount++;
     }
 }

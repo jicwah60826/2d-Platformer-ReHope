@@ -13,8 +13,6 @@ public class UIController : MonoBehaviour
 
     public GameObject pauseScreen;
     public string mainMenuScene;
-    public TMP_Text deathCount;
-    public TMP_Text gemCount;
     public GameObject quitOverlay;
 
     private void Awake()
@@ -80,7 +78,7 @@ public class UIController : MonoBehaviour
 
     public void UpdateUI()
     {
-        deathCount.text = "Death Count: " + deathCount;
+        //NOT USED YET
     }
 
 }

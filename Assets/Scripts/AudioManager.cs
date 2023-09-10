@@ -7,8 +7,7 @@ public class AudioManager : MonoBehaviour
 {
     public static AudioManager instance;
 
-    public AudioSource levelMusic;
-    public AudioSource mainMenuMusic;
+    public AudioSource levelMusic, mainMenuMusic, pointerOver, pointerClick;
 
     public AudioSource[] soundEffects;
 
@@ -62,6 +61,16 @@ public class AudioManager : MonoBehaviour
         {
             StartCoroutine(LevelMusicCo());
         }
+    }
+    
+    public void PlayPointerOver()
+    {
+        pointerOver.Play();
+    }
+    
+    public void PlayPointerClick()
+    {
+        pointerClick.Play();
     }
 
     public void StopBGM()

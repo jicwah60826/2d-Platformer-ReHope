@@ -21,7 +21,6 @@ public class KillZone : MonoBehaviour
         {
 
             respawnController.KillPlayer();
-            Debug.Log("KillPlayer invoked via killzone");
         }
     }
 }

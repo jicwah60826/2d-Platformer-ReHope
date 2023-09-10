@@ -13,6 +13,16 @@ public class MainMenu : MonoBehaviour
         AudioManager.instance.PlayMainMenuMusic();
     }
 
+    public void PointerOver()
+    {
+        AudioManager.instance.PlayPointerOver();
+    }
+    
+    public void PointerClick()
+    {
+        AudioManager.instance.PlayPointerClick();
+    }
+
 
     public void StartGame()
     {
@@ -39,5 +49,7 @@ public class MainMenu : MonoBehaviour
 
         //load the current level from the save data
         SceneManager.LoadScene(SaveSystem.instance.activeSave.currentLevel);
+
+        AudioManager.instance.PlayLevelMusic();
     }
 }
