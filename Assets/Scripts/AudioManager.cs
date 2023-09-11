@@ -19,6 +19,11 @@ public class AudioManager : MonoBehaviour
         {
             instance = this;
             DontDestroyOnLoad(gameObject);
+            
+            //levelMusic.ignoreListenerPause = true;
+            mainMenuMusic.ignoreListenerPause = true;
+            pointerOver.ignoreListenerPause = true;
+            pointerClick.ignoreListenerPause = true;
 
         }
         else
@@ -106,6 +111,7 @@ public class AudioManager : MonoBehaviour
 
         //wait
         yield return new WaitForSeconds(0.25f);
+        AudioListener.pause = false;
         levelMusic.Play();
     }
 }

@@ -19,7 +19,6 @@ public class FinishPoint : MonoBehaviour
             other.GetComponent<PlayerInput>().enabled = false;
 
             //call the method from the game manager script that does the level loading
-
             GameManager.GameManagerLoadLevel(levelToLoad);
         }
     }

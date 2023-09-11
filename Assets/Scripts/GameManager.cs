@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     private static GameManager gmInstance;
 
     private Fader fader;
+
     private void Awake()
     {
         if (gmInstance == null)
@@ -33,6 +34,7 @@ public class GameManager : MonoBehaviour
             gmInstance.fader = fD;
         }
     }
+    
 
     public static void GameManagerLoadLevel(int sceneIndex)
     {
@@ -43,4 +45,5 @@ public class GameManager : MonoBehaviour
         //call the set level function from the fader script
         gmInstance.fader.SetLevel(sceneIndex);
     }
+
 }

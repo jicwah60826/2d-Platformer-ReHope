@@ -74,8 +74,6 @@ public class RespawnController : MonoBehaviour
 
 IEnumerator Respawn(float duration)
     {
-
-
         //De-activate RigidBody 2D
         playerRB.simulated = false;
 

@@ -48,12 +48,15 @@ public class UIController : MonoBehaviour
         {
             pauseScreen.SetActive(true);
             Time.timeScale = 0f;
+            AudioListener.pause = true;
+
 
         }
         else
         {
             pauseScreen.SetActive(false);
             Time.timeScale = 1f;
+            AudioListener.pause = false;
         }
     }
 
