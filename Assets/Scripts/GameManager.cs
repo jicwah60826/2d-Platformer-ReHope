@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
+
     public static void RegisterFader(Fader fD)
     {
         if(gmInstance == null)

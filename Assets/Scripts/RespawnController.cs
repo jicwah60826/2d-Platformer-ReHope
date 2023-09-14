@@ -25,6 +25,10 @@ public class RespawnController : MonoBehaviour
 
     [SerializeField] private float waitToRespawn;
 
+    [SerializeField] private FlashImage _flashImage = null;
+    [SerializeField] private Color _flashColor = Color.white;
+    [SerializeField] private float _flashTime, _flashMinAlpha, _flashMmaxAlpha;
+
     private void Awake()
     {
         //find the Sprite Rendered on this gameobject
@@ -59,6 +63,8 @@ public class RespawnController : MonoBehaviour
 
     public void KillPlayer()
     {
+        _flashImage.Flash(_flashTime, _flashMinAlpha, _flashMmaxAlpha, _flashColor);
+
         StartCoroutine(Respawn(waitToRespawn));
     }
 
@@ -74,6 +80,8 @@ public class RespawnController : MonoBehaviour
 
 IEnumerator Respawn(float duration)
     {
+
+
         //De-activate RigidBody 2D
         playerRB.simulated = false;
 

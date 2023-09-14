@@ -19973,7 +19973,7 @@ MonoBehaviour:
   - {x: 0.36132812, y: -0.36132812, z: 0}
   m_ShapePathHash: 0
   m_Mesh: {fileID: 0}
-  m_InstanceId: 47738
+  m_InstanceId: -38478
 --- !u!114 &7145180634416293367
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19988,7 +19988,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   particleController: {fileID: 2568207071913189210}
   waitToRespawn: 0.5
-  isKilled: 0
+  _flashImage: {fileID: 0}
+  _flashColor: {r: 1, g: 1, b: 1, a: 1}
+  _flashTime: 0.45
+  _flashMinAlpha: 0
+  _flashMmaxAlpha: 1
 --- !u!111 &7145180634416293269
 Animation:
   m_ObjectHideFlags: 0
@@ -20018,3 +20022,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26e46949967ce5947a10b34fea1ca8c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gemCount: 0
