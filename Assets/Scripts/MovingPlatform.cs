@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class MovingPlatform : MonoBehaviour
 {
+
+    #region ReHopeGamesPlatform
 
     [Range(0f, 10f)]
     [SerializeField] private float speed;
@@ -44,7 +45,7 @@ public class MovingPlatform : MonoBehaviour
         //automatically add the target points
         wayPoints = new Transform[ways.transform.childCount];
 
-        for(int i = 0; i < ways.gameObject.transform.childCount; i++)
+        for (int i = 0; i < ways.gameObject.transform.childCount; i++)
         {
             wayPoints[i] = ways.transform.GetChild(i).gameObject.transform;
         }
@@ -52,6 +53,8 @@ public class MovingPlatform : MonoBehaviour
 
     private void Start()
     {
+        transform.position = wayPoints[startingPoint].position;
+
         pointIndex = 1;
         pointCount = wayPoints.Length;
         targetPos = wayPoints[1].transform.position;
@@ -61,7 +64,7 @@ public class MovingPlatform : MonoBehaviour
 
     private void Update()
     {
-        if(Vector2.Distance(transform.position, targetPos) < 0.05f)
+        if (Vector2.Distance(transform.position, targetPos) < 0.05f)
         {
             NextPoint();
         }
@@ -69,7 +72,7 @@ public class MovingPlatform : MonoBehaviour
 
     private void FixedUpdate()
     {
-        //move the platform. We use fixed updated because we have a rigid body on the platform
+        // move the platform. We use fixed updated because we have a rigid body on the platform
         rb.velocity = moveDirection * speed;
     }
 
@@ -79,12 +82,12 @@ public class MovingPlatform : MonoBehaviour
         transform.position = targetPos;
         moveDirection = Vector3.zero;
 
-        if(pointIndex == pointCount - 1) //arrived at the last point
+        if (pointIndex == pointCount - 1) //arrived at the last point
         {
             direction = -1;
         }
 
-        if(pointIndex == 0) //arrived at the first point
+        if (pointIndex == 0) //arrived at the first point
         {
             direction = 1;
         }
@@ -124,4 +127,6 @@ public class MovingPlatform : MonoBehaviour
             playerRB.gravityScale = playerRB.gravityScale / 10;
         }
     }
+
+    #endregion
 }
